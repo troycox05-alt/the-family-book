@@ -37,15 +37,15 @@ export default async function GamesPage() {
     <BetSlipProvider>
       <div className="flex flex-col gap-6 pb-32 lg:flex-row lg:items-start lg:gap-6 lg:pb-6">
         <div className="flex-1">
-          <h1 className="font-display text-2xl text-brass-light mb-4">This Week&rsquo;s Slate</h1>
+          <h1 className="text-2xl text-primary mb-4">This Week&rsquo;s Slate</h1>
           {weeks.length === 0 && (
-            <p className="text-cream-dim">
+            <p className="text-muted">
               No open games yet. The odds sync runs hourly Friday noon through Saturday night, Central.
             </p>
           )}
           {weeks.map((week) => (
             <div key={week} className="mb-8">
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-brass">
+              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 {week === 0 ? "Week 0" : `Week ${week}`}
               </h2>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

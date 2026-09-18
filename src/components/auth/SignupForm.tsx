@@ -46,7 +46,7 @@ export function SignupForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="username" className="text-sm text-cream-dim">
+        <label htmlFor="username" className="text-sm text-muted">
           Choose a username
         </label>
         <Input
@@ -60,7 +60,7 @@ export function SignupForm() {
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="pin" className="text-sm text-cream-dim">
+        <label htmlFor="pin" className="text-sm text-muted">
           Choose a PIN (4-8 digits)
         </label>
         <Input
@@ -75,7 +75,7 @@ export function SignupForm() {
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="confirmPin" className="text-sm text-cream-dim">
+        <label htmlFor="confirmPin" className="text-sm text-muted">
           Confirm PIN
         </label>
         <Input

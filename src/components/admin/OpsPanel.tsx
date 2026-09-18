@@ -51,15 +51,15 @@ export function OpsPanel() {
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">
-        <p className="font-display text-lg text-brass-light mb-2">The Odds API Quota</p>
+        <p className="text-lg text-primary mb-2">The Odds API Quota</p>
         {loading ? (
-          <p className="text-cream-dim text-sm">Loading…</p>
+          <p className="text-muted text-sm">Loading…</p>
         ) : latest ? (
-          <p className="scoreboard text-2xl text-brass-light">
-            {latest.requests_remaining ?? "?"} <span className="text-sm text-cream-dim">remaining</span>
+          <p className="scoreboard text-2xl text-primary">
+            {latest.requests_remaining ?? "?"} <span className="text-sm text-muted">remaining</span>
           </p>
         ) : (
-          <p className="text-cream-dim text-sm">No syncs logged yet.</p>
+          <p className="text-muted text-sm">No syncs logged yet.</p>
         )}
         <div className="mt-3 flex gap-2">
           <Button onClick={() => triggerSync("odds")} disabled={syncing !== null} className="text-sm">
@@ -69,14 +69,14 @@ export function OpsPanel() {
             {syncing === "scores" ? "Checking…" : "Check scores now"}
           </Button>
         </div>
-        {message && <p className="mt-2 text-xs text-cream-dim break-words">{message}</p>}
+        {message && <p className="mt-2 text-xs text-muted break-words">{message}</p>}
       </Card>
 
       <Card className="p-4">
-        <p className="font-display text-lg text-brass-light mb-2">Recent Syncs</p>
+        <p className="text-lg text-primary mb-2">Recent Syncs</p>
         <ul className="flex flex-col gap-1 text-sm">
           {log.map((row) => (
-            <li key={row.id} className="flex justify-between border-b border-cream/10 py-1 text-cream-dim">
+            <li key={row.id} className="flex justify-between border-b border-border/10 py-1 text-muted">
               <span>
                 {row.sync_type} &middot; {new Date(row.checked_at).toLocaleString()}
               </span>

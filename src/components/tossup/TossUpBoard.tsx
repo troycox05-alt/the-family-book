@@ -62,9 +62,9 @@ export function TossUpBoard() {
     }
   }
 
-  if (loading) return <p className="text-cream-dim">Loading…</p>;
+  if (loading) return <p className="text-muted">Loading…</p>;
   if (!data?.week) {
-    return <p className="text-cream-dim">No Toss-Up Five has been set for this week yet.</p>;
+    return <p className="text-muted">No Toss-Up Five has been set for this week yet.</p>;
   }
 
   const { week, games, myPicks, isPastLock, visible, others } = data;
@@ -75,19 +75,19 @@ export function TossUpBoard() {
       <Card className="p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <p className="font-display text-xl text-brass-light">{week.label}</p>
-            <p className="text-sm text-cream-dim">
+            <p className="text-xl text-primary">{week.label}</p>
+            <p className="text-sm text-muted">
               Locks {new Date(week.lockTime).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}
             </p>
           </div>
-          <p className="text-sm text-cream-dim">
-            Bonus: <span className="scoreboard text-brass-light">${week.bonusAmount.toFixed(2)}</span>
+          <p className="text-sm text-muted">
+            Bonus: <span className="scoreboard text-primary">${week.bonusAmount.toFixed(2)}</span>
             {week.bonusAwarded && <span className="ml-2 text-win">awarded</span>}
           </p>
         </div>
-        <p className="mt-2 text-xs text-cream-dim">{submittedCount} / 5 picks submitted</p>
+        <p className="mt-2 text-xs text-muted">{submittedCount} / 5 picks submitted</p>
         {!visible && (
-          <p className="mt-1 text-xs text-brass-light">
+          <p className="mt-1 text-xs text-primary">
             Submit all 5 to see everyone else&rsquo;s picks &mdash; or wait for lock, when everything opens up.
           </p>
         )}
@@ -100,7 +100,7 @@ export function TossUpBoard() {
           const locked = isPastLock;
           return (
             <Card key={game.id} className="p-4">
-              <p className="mb-2 text-sm text-cream-dim">
+              <p className="mb-2 text-sm text-muted">
                 {new Date(game.kickoffTime).toLocaleString(undefined, {
                   weekday: "short",
                   month: "short",
@@ -121,8 +121,8 @@ export function TossUpBoard() {
                       onClick={() => submitPick(game.id, team)}
                       className={`flex-1 rounded-md border px-2 py-2 text-sm transition-colors disabled:cursor-not-allowed ${
                         selected
-                          ? "border-brass bg-brass/20 text-brass-light"
-                          : "border-cream/15 bg-felt-darker/40 text-cream hover:border-brass/60"
+                          ? "border-primary bg-primary/20 text-primary"
+                          : "border-border/15 bg-surface-muted/40 text-ink hover:border-primary/60"
                       }`}
                     >
                       {team}
@@ -136,7 +136,7 @@ export function TossUpBoard() {
                 })}
               </div>
               {game.status === "final" && (
-                <p className="mt-2 text-xs text-cream-dim">
+                <p className="mt-2 text-xs text-muted">
                   Final: {game.awayTeam} {game.awayScore} &ndash; {game.homeTeam} {game.homeScore}
                 </p>
               )}
@@ -147,21 +147,21 @@ export function TossUpBoard() {
 
       {visible && others.length > 0 && (
         <Card className="p-4">
-          <p className="font-display text-lg text-brass-light mb-3">Everyone&rsquo;s Picks</p>
+          <p className="text-lg text-primary mb-3">Everyone&rsquo;s Picks</p>
           <div className="flex flex-col gap-3">
             {others.map((other) => {
               const correctCount = Object.values(other.picks).filter((p) => p.correct === true).length;
               return (
-                <div key={other.userId} className="border-b border-cream/10 pb-2 last:border-b-0">
-                  <p className="text-sm text-cream">
-                    <span className="font-semibold text-brass-light">{other.username}</span>
+                <div key={other.userId} className="border-b border-border/10 pb-2 last:border-b-0">
+                  <p className="text-sm text-ink">
+                    <span className="font-semibold text-primary">{other.username}</span>
                     {games.every((g) => g.status === "final") && (
-                      <span className="ml-2 text-cream-dim">
+                      <span className="ml-2 text-muted">
                         {correctCount} / {games.length} correct
                       </span>
                     )}
                   </p>
-                  <p className="text-xs text-cream-dim">
+                  <p className="text-xs text-muted">
                     {games
                       .map((g) => {
                         const p = other.picks[g.id];

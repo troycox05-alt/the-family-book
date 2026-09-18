@@ -8,7 +8,7 @@ export default async function AdminPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brass-light mb-4">The House</h1>
+      <h1 className="text-2xl text-primary mb-4">The House</h1>
       <AdminPanel />
     </div>
   );

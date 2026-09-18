@@ -49,13 +49,13 @@ export function TeamsPanel() {
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">
-        <p className="font-display text-lg text-brass-light mb-2">Add a Team</p>
+        <p className="text-lg text-primary mb-2">Add a Team</p>
         <div className="flex flex-wrap gap-2">
           <Input placeholder="School name" value={name} onChange={(e) => setName(e.target.value)} className="max-w-xs" />
           <select
             value={conference}
             onChange={(e) => setConference(e.target.value)}
-            className="rounded-md border border-cream/20 bg-felt-darker/60 px-3 py-2.5 text-cream outline-none focus:border-brass"
+            className="rounded-md border border-border/20 bg-surface-muted/60 px-3 py-2.5 text-ink outline-none focus:border-primary"
           >
             {CONFERENCES.map((c) => (
               <option key={c} value={c}>
@@ -72,12 +72,12 @@ export function TeamsPanel() {
 
       {CONFERENCES.map((conf) => (
         <Card key={conf} className="p-4">
-          <p className="font-display text-lg text-brass-light mb-2">{conf}</p>
+          <p className="text-lg text-primary mb-2">{conf}</p>
           <ul className="flex flex-col gap-1">
             {teams
               .filter((t) => t.conference === conf)
               .map((t) => (
-                <li key={t.id} className="flex items-center justify-between text-sm text-cream">
+                <li key={t.id} className="flex items-center justify-between text-sm text-ink">
                   {t.name}
                   <button onClick={() => removeTeam(t.id)} className="text-xs text-loss hover:underline cursor-pointer">
                     remove

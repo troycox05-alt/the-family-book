@@ -18,9 +18,9 @@ type Week = {
 
 function GamePicker({ games, selected, onToggle }: { games: Game[]; selected: Set<string>; onToggle: (id: string) => void }) {
   return (
-    <div className="max-h-48 overflow-y-auto rounded-md border border-cream/10 p-2">
+    <div className="max-h-48 overflow-y-auto rounded-md border border-border/10 p-2">
       {games.map((g) => (
-        <label key={g.id} className="flex items-center gap-2 py-1 text-sm text-cream">
+        <label key={g.id} className="flex items-center gap-2 py-1 text-sm text-ink">
           <input type="checkbox" checked={selected.has(g.id)} onChange={() => onToggle(g.id)} />
           {g.away_team} @ {g.home_team}
         </label>
@@ -66,13 +66,13 @@ function WeekCard({ week, games, onSaved }: { week: Week; games: Game[]; onSaved
   return (
     <Card className="p-4">
       <div className="mb-2 flex items-center justify-between">
-        <p className="text-cream font-semibold">{week.label}</p>
-        <span className="text-xs text-cream-dim">
+        <p className="text-ink font-semibold">{week.label}</p>
+        <span className="text-xs text-muted">
           Locks {new Date(week.lock_time).toLocaleString()} &middot; ${Number(week.bonus_amount).toFixed(2)}
           {week.bonus_awarded_at && " — awarded"}
         </span>
       </div>
-      <p className="mb-1 text-xs text-cream-dim">{selected.size} / 5 selected</p>
+      <p className="mb-1 text-xs text-muted">{selected.size} / 5 selected</p>
       <GamePicker games={games} selected={selected} onToggle={toggle} />
       <Button onClick={saveGames} disabled={saving || selected.size !== 5} className="mt-2 text-sm">
         Save 5 games
@@ -124,14 +124,14 @@ export function TossUpAdminPanel() {
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">
-        <p className="font-display text-lg text-brass-light mb-2">New Toss-Up Week</p>
+        <p className="text-lg text-primary mb-2">New Toss-Up Week</p>
         <div className="flex flex-wrap gap-2">
           <Input placeholder="Label, e.g. Week 4" value={label} onChange={(e) => setLabel(e.target.value)} className="max-w-xs" />
           <input
             type="datetime-local"
             value={lockTime}
             onChange={(e) => setLockTime(e.target.value)}
-            className="rounded-md border border-cream/20 bg-felt-darker/60 px-3 py-2 text-cream outline-none focus:border-brass"
+            className="rounded-md border border-border/20 bg-surface-muted/60 px-3 py-2 text-ink outline-none focus:border-primary"
           />
           <Input placeholder="Bonus $" value={bonusAmount} onChange={(e) => setBonusAmount(e.target.value)} className="w-28" />
           <Button onClick={createWeek} disabled={!label.trim() || !lockTime}>

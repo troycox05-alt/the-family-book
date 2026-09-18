@@ -39,7 +39,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="username" className="text-sm text-cream-dim">
+        <label htmlFor="username" className="text-sm text-muted">
           Username
         </label>
         <Input
@@ -51,7 +51,7 @@ export function LoginForm() {
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="pin" className="text-sm text-cream-dim">
+        <label htmlFor="pin" className="text-sm text-muted">
           PIN
         </label>
         <Input

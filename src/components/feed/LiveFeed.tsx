@@ -40,11 +40,11 @@ const STATUS_LABEL: Record<FeedBet["status"], string> = {
 };
 
 const STATUS_CLASS: Record<FeedBet["status"], string> = {
-  pending: "text-cream-dim",
+  pending: "text-muted",
   won: "text-win",
   lost: "text-loss",
   push: "text-push",
-  void: "text-cream-dim",
+  void: "text-muted",
 };
 
 async function fetchPage(limit: number): Promise<FeedEntry[]> {
@@ -75,14 +75,14 @@ function FeedEntryRow({ entry }: { entry: FeedEntry }) {
   });
 
   return (
-    <li className="border-b border-cream/10 py-3 text-sm">
-      <p className="text-cream">
-        <span className="font-semibold text-brass-light">{entry.username}</span> put{" "}
+    <li className="border-b border-border/10 py-3 text-sm">
+      <p className="text-ink">
+        <span className="font-semibold text-primary">{entry.username}</span> put{" "}
         <span className="scoreboard">${Number(entry.wager).toFixed(2)}</span> on{" "}
         {entry.type === "parlay" ? `a ${entry.bet_legs.length}-leg parlay` : legLabels[0]}
       </p>
       {entry.type === "parlay" && (
-        <ul className="mt-1 ml-3 list-disc text-cream-dim text-xs">
+        <ul className="mt-1 ml-3 list-disc text-muted text-xs">
           {legLabels.map((label, i) => (
             <li key={i}>{label}</li>
           ))}
@@ -121,9 +121,9 @@ export function LiveFeed() {
 
   return (
     <Card className="p-4">
-      <p className="font-display text-lg text-brass-light mb-2">Live Action</p>
-      {loading && entries.length === 0 && <p className="text-sm text-cream-dim">Loading…</p>}
-      {!loading && entries.length === 0 && <p className="text-sm text-cream-dim">No bets placed yet.</p>}
+      <p className="text-lg text-primary mb-2">Live Action</p>
+      {loading && entries.length === 0 && <p className="text-sm text-muted">Loading…</p>}
+      {!loading && entries.length === 0 && <p className="text-sm text-muted">No bets placed yet.</p>}
       <ul>
         {entries.map((entry) => (
           <FeedEntryRow key={entry.id} entry={entry} />
@@ -133,7 +133,7 @@ export function LiveFeed() {
         <button
           type="button"
           onClick={() => setPageSize((s) => s + PAGE_SIZE)}
-          className="mt-3 text-sm text-brass-light underline underline-offset-2 hover:text-brass cursor-pointer"
+          className="mt-3 text-sm text-primary underline underline-offset-2 hover:text-primary cursor-pointer"
         >
           Load more
         </button>

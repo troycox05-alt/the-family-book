@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "ghost";
+type Variant = "primary" | "ghost" | "danger";
 
 export function Button({
   variant = "primary",
@@ -8,12 +8,11 @@ export function Button({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant }) {
   const base =
-    "rounded-md px-4 py-2.5 font-semibold tracking-wide transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+    "rounded-lg px-4 py-2.5 font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
   const variants: Record<Variant, string> = {
-    primary:
-      "bg-brass text-felt-darker hover:bg-brass-light border border-brass-dark shadow-[0_2px_0_0_var(--color-brass-dark)] active:translate-y-px active:shadow-none",
-    ghost:
-      "bg-transparent text-cream border border-cream/30 hover:border-brass hover:text-brass-light",
+    primary: "bg-primary text-white hover:bg-primary-hover",
+    ghost: "bg-transparent text-ink border border-border hover:bg-surface-muted",
+    danger: "bg-transparent text-loss border border-loss/30 hover:bg-loss-soft",
   };
 
   return <button className={`${base} ${variants[variant]} ${className}`} {...props} />;

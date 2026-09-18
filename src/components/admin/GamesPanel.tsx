@@ -70,10 +70,10 @@ function GameRow({ game, onSaved }: { game: Game; onSaved: () => void }) {
   return (
     <Card className="p-3">
       <div className="mb-2 flex items-center justify-between text-sm">
-        <span className="text-cream">
+        <span className="text-ink">
           Wk {game.week} &middot; {game.away_team} @ {game.home_team}
         </span>
-        <span className={`text-xs uppercase ${game.status === "void" ? "text-loss" : game.status === "final" ? "text-cream-dim" : "text-win"}`}>
+        <span className={`text-xs uppercase ${game.status === "void" ? "text-loss" : game.status === "final" ? "text-muted" : "text-win"}`}>
           {game.status}
         </span>
       </div>
@@ -140,8 +140,8 @@ export function GamesPanel() {
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">
-        <p className="font-display text-lg text-brass-light mb-2">Bulk Paste a Slate</p>
-        <p className="mb-2 text-xs text-cream-dim">
+        <p className="text-lg text-primary mb-2">Bulk Paste a Slate</p>
+        <p className="mb-2 text-xs text-muted">
           One game per line, CSV: week,kickoff_time_iso,home_team,away_team,spread_line,spread_odds,moneyline_home,moneyline_away,total,total_odds
           &mdash; leave odds fields blank if unknown.
         </p>
@@ -150,16 +150,16 @@ export function GamesPanel() {
           onChange={(e) => setBulkText(e.target.value)}
           rows={5}
           placeholder="4,2026-09-26T19:00:00Z,Ohio State,Michigan,-3.5,-110,-180,155,,"
-          className="w-full rounded-md border border-cream/20 bg-felt-darker/60 px-3 py-2 text-sm text-cream placeholder:text-cream-dim/50 outline-none focus:border-brass"
+          className="w-full rounded-md border border-border/20 bg-surface-muted/60 px-3 py-2 text-sm text-ink placeholder:text-muted/50 outline-none focus:border-primary"
         />
         <Button onClick={submitBulk} disabled={bulkSubmitting || !bulkText.trim()} className="mt-2 text-sm">
           {bulkSubmitting ? "Adding…" : "Add games"}
         </Button>
-        {bulkMessage && <p className="mt-2 text-xs text-cream-dim">{bulkMessage}</p>}
+        {bulkMessage && <p className="mt-2 text-xs text-muted">{bulkMessage}</p>}
       </Card>
 
       <div className="flex flex-col gap-2">
-        {loading && <p className="text-cream-dim text-sm">Loading…</p>}
+        {loading && <p className="text-muted text-sm">Loading…</p>}
         {games.map((g) => (
           <GameRow key={g.id} game={g} onSaved={load} />
         ))}

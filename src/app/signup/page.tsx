@@ -7,15 +7,15 @@ export default function SignupPage() {
     <main className="flex flex-1 items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <h1 className="font-display text-3xl text-brass-light">The Family Book</h1>
-          <p className="mt-1 text-sm text-cream-dim">Every new account starts with a $500 stake.</p>
+          <h1 className="text-3xl text-primary">The Family Book</h1>
+          <p className="mt-1 text-sm text-muted">Every new account starts with a $500 stake.</p>
         </div>
         <Card className="p-6">
           <SignupForm />
         </Card>
-        <p className="mt-6 text-center text-sm text-cream-dim">
+        <p className="mt-6 text-center text-sm text-muted">
           Already have a tab?{" "}
-          <Link href="/login" className="text-brass-light underline underline-offset-2 hover:text-brass">
+          <Link href="/login" className="text-primary underline underline-offset-2 hover:text-primary">
             Log in
           </Link>
         </p>

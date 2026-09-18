@@ -27,7 +27,7 @@ export function AdminPanel() {
             key={t.key}
             onClick={() => setTab(t.key)}
             className={`rounded-md border px-3 py-1.5 text-sm cursor-pointer ${
-              tab === t.key ? "border-brass bg-brass/20 text-brass-light" : "border-cream/15 text-cream-dim hover:border-brass/50"
+              tab === t.key ? "border-primary bg-primary/20 text-primary" : "border-border/15 text-muted hover:border-primary/50"
             }`}
           >
             {t.label}

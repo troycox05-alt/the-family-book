@@ -27,8 +27,8 @@ function UserRow({ user, onSaved }: { user: User; onSaved: () => void }) {
   }
 
   return (
-    <li className="flex items-center justify-between gap-2 border-b border-cream/10 py-2 text-sm">
-      <span className="text-cream">{user.username}</span>
+    <li className="flex items-center justify-between gap-2 border-b border-border/10 py-2 text-sm">
+      <span className="text-ink">{user.username}</span>
       <div className="flex items-center gap-2">
         <Input value={value} onChange={(e) => setValue(e.target.value)} className="w-28" />
         <Button onClick={save} disabled={saving} className="text-xs px-3 py-1.5">
@@ -59,7 +59,7 @@ export function UsersPanel() {
 
   return (
     <Card className="p-4">
-      <p className="font-display text-lg text-brass-light mb-2">Balance Corrections</p>
+      <p className="text-lg text-primary mb-2">Balance Corrections</p>
       <ul>
         {users.map((u) => (
           <UserRow key={u.id} user={u} onSaved={load} />

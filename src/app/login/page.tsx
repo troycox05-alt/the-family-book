@@ -7,15 +7,15 @@ export default function LoginPage() {
     <main className="flex flex-1 items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <h1 className="font-display text-3xl text-brass-light">The Family Book</h1>
-          <p className="mt-1 text-sm text-cream-dim">Est. this season &middot; fake money, real bragging rights</p>
+          <h1 className="text-3xl text-primary">The Family Book</h1>
+          <p className="mt-1 text-sm text-muted">Est. this season &middot; fake money, real bragging rights</p>
         </div>
         <Card className="p-6">
           <LoginForm />
         </Card>
-        <p className="mt-6 text-center text-sm text-cream-dim">
+        <p className="mt-6 text-center text-sm text-muted">
           New around here?{" "}
-          <Link href="/signup" className="text-brass-light underline underline-offset-2 hover:text-brass">
+          <Link href="/signup" className="text-primary underline underline-offset-2 hover:text-primary">
             Open a tab
           </Link>
         </p>

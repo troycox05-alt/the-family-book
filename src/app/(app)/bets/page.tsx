@@ -6,11 +6,11 @@ import { formatAmericanOdds } from "@/lib/shared/format";
 import { legSelectionLabel } from "@/lib/shared/legLabel";
 
 const STATUS_CLASS: Record<string, string> = {
-  pending: "text-cream-dim",
+  pending: "text-muted",
   won: "text-win",
   lost: "text-loss",
   push: "text-push",
-  void: "text-cream-dim",
+  void: "text-muted",
 };
 
 export default async function MyBetsPage() {
@@ -27,12 +27,12 @@ export default async function MyBetsPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brass-light mb-4">My Bets</h1>
+      <h1 className="text-2xl text-primary mb-4">My Bets</h1>
       <div className="flex flex-col gap-3">
         {(bets ?? []).map((bet) => (
           <Card key={bet.id} className="p-4">
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-xs uppercase tracking-wider text-cream-dim">
+              <span className="text-xs uppercase tracking-wider text-muted">
                 {bet.type} &middot; ${Number(bet.wager).toFixed(2)}
               </span>
               <span className={`text-sm font-semibold ${STATUS_CLASS[bet.status]}`}>
@@ -42,10 +42,10 @@ export default async function MyBetsPage() {
             </div>
             <ul className="flex flex-col gap-1">
               {bet.bet_legs.map((leg, i) => (
-                <li key={i} className="text-sm text-cream">
+                <li key={i} className="text-sm text-ink">
                   {legSelectionLabel(leg)} ({formatAmericanOdds(leg.odds_at_placement)})
                   {leg.games && (
-                    <span className="text-cream-dim">
+                    <span className="text-muted">
                       {" "}
                       &mdash; {leg.games.away_team} @ {leg.games.home_team}
                     </span>
@@ -56,7 +56,7 @@ export default async function MyBetsPage() {
             </ul>
           </Card>
         ))}
-        {(!bets || bets.length === 0) && <p className="text-cream-dim">No bets yet &mdash; head to Games to get started.</p>}
+        {(!bets || bets.length === 0) && <p className="text-muted">No bets yet &mdash; head to Games to get started.</p>}
       </div>
     </div>
   );
