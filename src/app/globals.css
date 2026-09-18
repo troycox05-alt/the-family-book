@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --color-felt: #0b3d2e;
+  --color-felt-dark: #072a20;
+  --color-felt-darker: #041a14;
+  --color-card: #0f3327;
+  --color-card-light: #143c2e;
+  --color-brass: #c9a227;
+  --color-brass-light: #e8cf7a;
+  --color-brass-dark: #8a6d1f;
+  --color-cream: #f3e9d2;
+  --color-cream-dim: #cfc3a4;
+  --color-win: #4caf6b;
+  --color-loss: #c0392b;
+  --color-push: #d9b44a;
+}
+
+@theme inline {
+  --color-felt: var(--color-felt);
+  --color-felt-dark: var(--color-felt-dark);
+  --color-felt-darker: var(--color-felt-darker);
+  --color-card: var(--color-card);
+  --color-card-light: var(--color-card-light);
+  --color-brass: var(--color-brass);
+  --color-brass-light: var(--color-brass-light);
+  --color-brass-dark: var(--color-brass-dark);
+  --color-cream: var(--color-cream);
+  --color-cream-dim: var(--color-cream-dim);
+  --color-win: var(--color-win);
+  --color-loss: var(--color-loss);
+  --color-push: var(--color-push);
+  --font-display: var(--font-playfair);
+  --font-scoreboard: var(--font-space-mono);
+  --font-sans: var(--font-geist-sans);
+}
+
+body {
+  background-color: var(--color-felt);
+  color: var(--color-cream);
+}
+
+/* Subtle felt weave + vignette so cards don't read as flat fintech panels. */
+.felt-texture {
+  background-color: var(--color-felt);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.02) 0px,
+      rgba(0, 0, 0, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.card-texture {
+  background-color: var(--color-card);
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.08) 100%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+.scoreboard {
+  font-family: var(--font-scoreboard);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
