@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { straightPayout, parlayPayout, americanToDecimal } from "@/lib/shared/odds";
 import { formatAmericanOdds } from "@/lib/shared/format";
+import { useToast } from "@/components/ui/ToastContext";
 
 export function BetSlip() {
   const router = useRouter();
+  const { showToast } = useToast();
   const { legs, clear } = useBetSlip();
   const [wagerInput, setWagerInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -60,15 +62,20 @@ export function BetSlip() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? "Could not place that bet.");
+        const message = data.error ?? "Could not place that bet.";
+        setError(message);
+        showToast("error", message);
         return;
       }
       setSuccess(`Bet placed for $${wager.toFixed(2)}.`);
+      showToast("success", `Bet placed for $${wager.toFixed(2)} — good luck!`);
       setWagerInput("");
       clear();
       router.refresh();
     } catch {
-      setError("Could not reach the server. Try again.");
+      const message = "Could not reach the server. Try again.";
+      setError(message);
+      showToast("error", message);
     } finally {
       setSubmitting(false);
     }

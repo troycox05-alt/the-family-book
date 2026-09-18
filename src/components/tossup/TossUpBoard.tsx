@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { useToast } from "@/components/ui/ToastContext";
 
 type Game = {
   id: string;
@@ -25,6 +27,7 @@ type TossUpData = {
 };
 
 export function TossUpBoard() {
+  const { showToast } = useToast();
   const [data, setData] = useState<TossUpData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,16 +56,27 @@ export function TossUpBoard() {
       });
       const body = await res.json();
       if (!res.ok) {
-        setError(body.error ?? "Could not save that pick.");
+        const message = body.error ?? "Could not save that pick.";
+        setError(message);
+        showToast("error", message);
         return;
       }
+      showToast("success", `Pick saved: ${pick}`);
       await load();
     } finally {
       setSubmittingGameId(null);
     }
   }
 
-  if (loading) return <p className="text-muted">Loading…</p>;
+  if (loading) {
+    return (
+      <div className="flex flex-col gap-3">
+        <Skeleton className="h-20 w-full" />
+        <Skeleton className="h-20 w-full" />
+        <Skeleton className="h-20 w-full" />
+      </div>
+    );
+  }
   if (!data?.week) {
     return <p className="text-muted">No Toss-Up Five has been set for this week yet.</p>;
   }

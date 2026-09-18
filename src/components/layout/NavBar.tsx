@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoutButton } from "@/components/auth/LogoutButton";
+import { HelpButton } from "@/components/onboarding/HelpButton";
 
 type NavBarProps = {
   username: string;
@@ -40,6 +41,7 @@ export function NavBar({ username, balance, isAdmin }: NavBarProps) {
             <p className="text-xs text-muted">{username}</p>
             <p className="scoreboard text-lg font-bold text-ink">${balance.toFixed(2)}</p>
           </div>
+          <HelpButton />
           <LogoutButton />
         </div>
       </div>

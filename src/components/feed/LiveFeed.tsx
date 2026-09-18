@@ -5,6 +5,7 @@ import { supabasePublic } from "@/lib/supabase/browser";
 import { formatAmericanOdds } from "@/lib/shared/format";
 import { legSelectionLabel } from "@/lib/shared/legLabel";
 import { Card } from "@/components/ui/Card";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 const PAGE_SIZE = 50;
 const POLL_MS = 8000;
@@ -122,7 +123,13 @@ export function LiveFeed() {
   return (
     <Card className="p-4">
       <p className="text-lg text-primary mb-2">Live Action</p>
-      {loading && entries.length === 0 && <p className="text-sm text-muted">Loading…</p>}
+      {loading && entries.length === 0 && (
+        <div className="flex flex-col gap-2">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+        </div>
+      )}
       {!loading && entries.length === 0 && <p className="text-sm text-muted">No bets placed yet.</p>}
       <ul>
         {entries.map((entry) => (
